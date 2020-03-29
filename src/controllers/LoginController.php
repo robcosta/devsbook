@@ -6,7 +6,7 @@ use \core\Controller;
 class LoginController extends Controller {
     
     public function sigin() {
-        echo "Tela de login";
+        $this->render('login');
     }
     
     public function sigup() {
