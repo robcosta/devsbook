@@ -9,7 +9,7 @@ class LoginController extends Controller {
         echo "Tela de login";
     }
     
-    public function sigp() {
+    public function sigup() {
         echo "Tela de cadastro";
     }
     
