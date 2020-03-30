@@ -6,18 +6,18 @@ use \src\handlers\LoginHandler;
 
 class LoginController extends Controller {
     
-    public function sigin() {
+    public function signin() {
         $flash = "";        
         if(!empty($_SESSION['flash'])){
             $flash = $_SESSION['flash'];
             $_SESSION['flash'] = '';
         }
-        $this->render('login', [
+        $this->render('signin', [
             'flash' => $flash
         ]);
     }
     
-    public function siginAction(){
+    public function signinAction(){
         $email = filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL);
         $password = filter_input(INPUT_POST, 'password');
 
@@ -29,15 +29,22 @@ class LoginController extends Controller {
                 $this->redirect('/');
             } else {
                 $_SESSION['flash'] = "E-mail e/ou senha não conferem!";
-                $this->redirect('/login');
+                $this->redirect('/signin');
             }
         } else {
-            $this->redirect("/login");
+            $this->redirect("/signin");
         }
     }
 
-    public function sigup() {
-        echo "Tela de cadastro";
+    public function signup() {
+        $flash = "";        
+        if(!empty($_SESSION['flash'])){
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+        $this->render('signup', [
+            'flash' => $flash
+        ]);
     }
 
     

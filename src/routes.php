@@ -4,6 +4,6 @@ use core\Router;
 $router = new Router();
 
 $router->get('/', 'HomeController@index');
-$router->get('/login', 'LoginController@sigin');
-$router->post('/login', 'LoginController@siginAction');
-$router->get('/cadastro', 'LoginController@sigup');
+$router->get('/signin', 'LoginController@signin');
+$router->post('/signin', 'LoginController@signinAction');
+$router->get('/signup', 'LoginController@signup');

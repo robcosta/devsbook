@@ -13,7 +13,7 @@
         </div>
     </header>
     <section class="container main">
-        <form method="POST" action="<?=$base;?>/login">
+        <form method="POST" action="<?=$base;?>/signin">
             <?php if(!empty($flash)):?>
                <div class='flash'> <?php echo $flash;?></div>
             <?php endif;?>    
@@ -23,7 +23,7 @@
 
             <input class="button" type="submit" value="Acessar o sistema" />
 
-            <a href="<?=$base;?>/cadastro">Ainda não tem conta? Cadastre-se</a>
+            <a href="<?=$base;?>/signup">Ainda não tem conta? Cadastre-se</a>
         </form>
     </section>
 </body>
