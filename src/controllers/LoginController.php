@@ -47,5 +47,40 @@ class LoginController extends Controller {
         ]);
     }
 
+    public function signupAction(){
+        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+        $password = filter_input(INPUT_POST, "password");
+        $birthDate = filter_input(INPUT_POST, "birthdate");       
+
+        if($name && $email && $password && $birthDate ){
+            //Verifica a data de nascimento e já coloca no formato internacional do DB (aaa-mm-dd)
+           $birthDate = explode("/", $birthDate);
+           if(!checkdate($birthDate[1], $birthDate[0],$birthDate[2])){
+               $_SESSION['flash'] = "Data de nascimento inválida!";
+               $this->redirect("/signup");
+           }
+           $birthDate = $birthDate[2].'-'.$birthDate[1].'-'.$birthDate[0]; 
+           //verifica se á maior de 16 anos
+           if(strtotime($birthDate) > strtotime(date('Y-m-d'))-(16 * 31536000 )){
+                $_SESSION['flash'] = "Menor de 16 anos!";
+               $this->redirect("/signup");
+           }
+           
+           //Verifica se o email já foi cadastrado anteriormente
+           if(LoginHandler::emailExists($email) === false){
+                $token = LoginHandler::addUser($name, $email, $password, $birthDate);
+                $_SESSION['token'] = $token;
+                $this->redirect("/");
+           } else {
+                $_SESSION['flash'] = 'E-mail já cadastrado!';
+                $this->redirect("/signup");
+           } 
+
+        } else {
+           $this->redirect('/signup');
+        }
+    }
+
     
 }
