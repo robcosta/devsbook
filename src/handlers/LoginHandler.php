@@ -13,12 +13,13 @@ class LoginHandler {
                        
             if(count($user)>0){
                 $loggedUser = new User();
-               // $loggedUser->setId($user['id']);
+                $loggedUser->id = $user['id'];
+                $loggedUser->name = $user['name'];
+                $loggedUser->avatar = $user['avatar'];
                // $loggedUser->setEmail($user['email']);
                // $loggedUser->setName($user['name']);
 
-
-                return $user;
+                return $loggedUser;
             }
         }    
         return false;
