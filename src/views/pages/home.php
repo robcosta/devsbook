@@ -104,4 +104,5 @@
         </div>
 
     </section>
-</section>    
+</section>
+<?=$render('footer');?>   
