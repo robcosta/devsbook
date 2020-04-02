@@ -1,6 +1,5 @@
 <?php
 namespace src\handlers;
-use \core\Model;
 use \src\models\User;
 
 class LoginHandler {
