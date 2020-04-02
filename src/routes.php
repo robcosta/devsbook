@@ -12,6 +12,8 @@ $router->post('/signin', 'LoginController@signinAction');
 $router->get('/signup', 'LoginController@signup');
 $router->post('/signup', 'LoginController@signupAction');
 
+$router->post('/post/new', 'PostController@new');
+
 //$router->get('/pesquisa', 'HomeController@search');
 //$router->get('/perfil',);
 //$router->get('/sair',);
