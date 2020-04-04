@@ -2,7 +2,7 @@
 namespace src\handlers;
 use \src\models\Post;
 use \src\models\User;
-use \src\models\UserRelations;
+use \src\models\UserRelation;
 
 class PostHandler {
 
@@ -25,10 +25,10 @@ public static function addPost($idUser, $type, $body, $date){
 public static function getHomeFeed($idUser, $page){
     $perPage = 2;
     // 1. Pegar a lista de usuarios que Eu sigo
-    $userList = UserRelations::select()->where('id',$idUser)->get();
+    $userList = UserRelation::select()->where('id',$idUser)->get();
     $users = [];
     foreach ($userList as $userItem) {
-        $users = $userItem->user_to; 
+        $users[] = $userItem['user_to']; 
     }
     $users[] = $idUser;
     
