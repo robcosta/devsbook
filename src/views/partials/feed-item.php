@@ -18,7 +18,7 @@
                     } ?>                 
                 </span>
                 <br/>
-                <span class="fidi-date"><?=$data->createdAt;?></span>
+                <span class="fidi-date"><?=date('d/m/Y H:i:s', strtotime($data->createdAt));?></span>
             </div>
             <div class="feed-item-head-btn">
                 <img src="<?=$base;?>/assets/images/more.png" />
