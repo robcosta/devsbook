@@ -1,4 +1,4 @@
-<!--<?php echo "<pre>"; print_r($user);echo "<pre>"; print_r($feed);  ?>-->
+<!--<?php echo "<pre>"; print_r($user);echo "<pre>"; print_r($feed); echo $relation;  ?>-->
 
 <?php $render('header', ['loggedUser' => $loggedUser]) ?>
 
@@ -19,6 +19,12 @@
                                 <div class="profile-info-location"><?=$user->city;?></div>
                             </div>
                             <div class="profile-info-data row">
+                                <?php if($user->id != $loggedUser->id): ?>
+                                    <div class="profile-info-item m-width-20">
+                                        <a class="button" href="<?=$base;?>/perfil/<?=$user->id;?>/follow"><?=($isFollowing) ? 'Deixar de Seguir' : 'Seguir';?></a>
+                                    </div>
+                                <?php endif; ?>
+                                </div>
                                 <div class="profile-info-item m-width-20">
                                     <div class="profile-info-item-n"><?=count($user->followers); ?></div>
                                     <div class="profile-info-item-s">Seguidores</div>
@@ -45,7 +51,7 @@
                         <div class="box-body">
                             
                             <div class="user-info-mini">
-                                <img src="assets/images/calendar.png" />
+                                <img src="<?=$base;?>/assets/images/calendar.png" />
                                 <?=date('d/m/Y', strtotime($user->birthdate)); ?> (<?=$user->ageYears;?> anos)
                             </div>
                             <?php if(!empty($user->city)): ?>

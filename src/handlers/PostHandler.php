@@ -83,7 +83,7 @@ public static function getUserFeed($idUser, $page){
 public static function getHomeFeed($loggedUserId, $page){
     $perPage = 2;
     // 1. Pegar a lista de usuarios que Eu sigo
-    $userList = UserRelation::select()->where('id',$loggedUserId)->get();
+    $userList = UserRelation::select()->where('user_from',$loggedUserId)->get();
     
     $users = [];
     foreach ($userList as $userItem) {

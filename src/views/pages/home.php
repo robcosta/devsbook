@@ -1,3 +1,5 @@
+<!--<?php echo "<pre>"; print_r($feed);?>-->
+
 <?=$render('header', ['loggedUser'=>$loggedUser]);?>
 
 <section class="container main">
