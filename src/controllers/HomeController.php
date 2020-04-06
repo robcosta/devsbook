@@ -21,7 +21,7 @@ class HomeController extends Controller {
         $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
         $feed = PostHandler::getHomeFeed(
             $this->loggedUser->id,
-            $page
+            $page,                    
         );
 
         $this->render('home', [

@@ -82,5 +82,8 @@ class LoginController extends Controller {
         }
     }
 
-    
+    public function logout(){
+        $_SEEION['token'] = '';
+        $this->redirect('/signin');
+    }
 }
