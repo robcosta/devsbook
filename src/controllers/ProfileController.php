@@ -20,7 +20,7 @@ class ProfileController extends Controller {
     public function index($atts = []){
         $page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
 
-        //Detectando se o usuário existe, caso contrário usa o logado
+         //Detectando se o usuário existe, caso contrário usa o logado
         $id = $this->loggedUser->id;
         if(isset($atts['id'])){
             if(UserHandler::userExists(intval($atts['id']))){ 

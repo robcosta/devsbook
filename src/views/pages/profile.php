@@ -131,7 +131,9 @@
                             
                         </div>
                     </div>
-                    
+                    <?php if($user->id == $loggedUser->id): ?>
+                        <?=$render('feed-editor', ['user'=>$loggedUser]);?>
+                    <?php endif; ?>
                     <?php foreach($feed['posts'] as $feedItem):?>
                         <?=$render('feed-item',['data' => $feedItem]);?>
                     <?php endforeach;?>
