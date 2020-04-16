@@ -27,7 +27,7 @@ class SearchController extends Controller {
         //Retorna ous usuários localizados
         $users = UserHandler::searchUser($searchTerm);
 
-        //Montnado a tela de perfil do usuário
+        //Montnado a tela de busca do usuário
         $this->render('search',[
             'loggedUser' => $this->loggedUser,
             'searchTerm' => $searchTerm,

@@ -17,9 +17,10 @@ class UserHandler {
                 $loggedUser->id = $user['id'];
                 $loggedUser->name = $user['name'];
                 $loggedUser->avatar = $user['avatar'];
-               // $loggedUser->setEmail($user['email']);
-               // $loggedUser->setName($user['name']);
-
+                $loggedUser->birthDate = $user['birthdate'];
+                $loggedUser->email = $user['email'];
+                $loggedUser->city = $user['city'];
+                $loggedUser->work = $user['work'];
                 return $loggedUser;
             }
         }    
@@ -27,7 +28,7 @@ class UserHandler {
     }
 
     public static function verifyLogin($email, $password){
-        //$user = User::select()->where('email',$email && 'password',$password)->one();
+        
         $user = User::select()->where('email',$email)->one();
 
         if($user){
@@ -120,6 +121,33 @@ class UserHandler {
         ])->execute();
 
         return$token;
+    }
+
+    public static function updateUser($name, $email, $password, $birthDate, $city, $work, $avatar, $cover){
+        //Gera o hash da senha, caso a senha mude
+        if(!empty($password)){
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            User::update()
+                ->set('email',$email)
+                ->set('password',$hash)
+                ->set('name', $name)
+                ->set('birthdate', $birthDate)
+                ->set('city', $city)
+                ->set('work', $work)
+                ->set('avatar',$avatar)
+                ->set('cover',$cover)
+            ->execute();
+        } else {
+            User::update()
+                ->set('email',$email)
+                ->set('name', $name)
+                ->set('birthdate', $birthDate)
+                ->set('city', $city)
+                ->set('work', $work)
+                ->set('avatar',$avatar)
+                ->set('cover',$cover)
+            ->execute();
+        }
     }
 
     public static function isFollowing($from, $to){
