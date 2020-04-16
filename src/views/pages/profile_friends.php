@@ -12,7 +12,7 @@
                         <div class="box-body">
                             <div class="tabs">
                                 <?php $activeTab = filter_input(INPUT_GET,'activeTab');
-                                    if(!$activeTab){
+                                    if($activeTab != "seguidores"){
                                         $activeTab = "seguindo";
                                     }
                                 ?>
