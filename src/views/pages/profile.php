@@ -1,4 +1,4 @@
-<!--<?php echo "<pre>"; print_r($user);echo "<pre>"; print_r($feed); echo $relation;  ?>-->
+<!--<?php echo "<pre>"; print_r($user);echo "<pre>"; print_r($feed); ?>-->
 
 <?php $render('header', ['loggedUser' => $loggedUser]) ?>
 

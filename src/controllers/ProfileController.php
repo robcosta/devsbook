@@ -78,4 +78,38 @@ class ProfileController extends Controller {
         
     }
 
-}//fim da classe
+    public function friends($atts = []) {
+        //Detectando se o usuário existe, caso contrário usa o logado
+        $id = $this->loggedUser->id;
+        if(isset($atts['id'])){
+            if(UserHandler::userExists(intval($atts['id']))){ 
+                $id = intval($atts['id']);
+            }
+        }
+  
+        //Pegando informações do usuário
+        $user = UserHandler::getUser($id, true);
+        if(!$user){
+            $this->redirect("/");
+        }
+          
+        //Cálculo da idade do usuário
+        $dateFrom = new \DateTime($user->birthdate);
+        $dateTo = new \DateTime('today');
+        $user->ageYears = $dateFrom->diff($dateTo)->y;
+
+        //Verificar se EU sigo o usuário
+        $isFollowing = false;
+        if($user->id != $this->loggedUser->id){
+            $isFollowing = UserHandler::isFollowing($this->loggedUser->id, $user->id);       
+        }
+
+        //Montnado a tela de perfil do usuário
+        $this->render('profile_friends',[
+            'loggedUser' => $this->loggedUser,
+            'user' => $user,            
+            'isFollowing' => $isFollowing
+        ]);
+    }
+
+}//fim da classe 
