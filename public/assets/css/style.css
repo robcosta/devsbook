@@ -287,9 +287,12 @@ header .head-side {
     background-repeat: no-repeat;
     padding-left:20px;
 }
-
 .profile-info-item {
     text-align: center;
+}
+
+.profile-info-item a {
+    text-decoration: none;
 }
 .profile-info-item-n {
     font-weight: bold;
@@ -427,6 +430,7 @@ header .head-side {
 }
 .button:hover {
     background-color:#477dbb;
+}    
 
 @media (max-width: 992px) {
     header .head-side-right {
